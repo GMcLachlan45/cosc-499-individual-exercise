@@ -5,27 +5,28 @@ import java.util.Scanner;
 
 public class MainFile {
 
-	public static StringBuilder input;
+	public static String input;
 	public static String result;
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);  // Create a scanner for input
 		
 	    System.out.println("Please enter a string below:");
-	    input = new StringBuilder(scan.nextLine());  // Read the user's input string
+	    input = scan.nextLine(); // Read the user's input string
 
-	    System.out.println("Sort as words? (y/n)");
+	    // ask the user which way they want the string to be sorted
+	    System.out.println("Sort as words? (y/n)"); 
 	    String sortWord = (scan.nextLine());
 	    
 	    if(sortWord.equals("y") || sortWord.equals("Y"))
-	    	result = sortByFirstLetter(input.toString());
+	    	result = sortByFirstLetter(input);
 	    else {
 	    	System.out.println("Sort all characters? (y/n)");
 		    String sortChars = (scan.nextLine());
-	    	result = (sortChars.equals("y") || sortChars.equals("Y")) ? sortByAllCharacters(input.toString()) : input.toString();
+	    	result = (sortChars.equals("y") || sortChars.equals("Y")) ? sortByAllCharacters(input) : input;
 	    }
 	    
-	    System.out.println("\nYou entered:\n " + input.toString().toLowerCase());
+	    System.out.println("\nYou entered:\n " + input.toLowerCase());
 	    System.out.println("Result:\n" +result);  // Output user input
 		
 	    scan.close(); // Close the scanner to avoid memory leak
@@ -41,7 +42,6 @@ public class MainFile {
 		for (int i = 0; i < strArr.length; i++) {
 			res.append(strArr[i] + " ");
         }      
-		
 		return res.toString().trim();
 	}
 	
